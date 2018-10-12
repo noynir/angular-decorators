@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import {TestHost} from './decorators/testHost.decorator';
 
-@Component({
+@TestHost() @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

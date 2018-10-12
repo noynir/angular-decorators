@@ -14,7 +14,6 @@ const httpOptions = {
 };
 
 @Injectable({ providedIn: 'root' })
-@spyable
 export class HeroService {
 
   private heroesUrl = 'api/heroes';  // URL to web api

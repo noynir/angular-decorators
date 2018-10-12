@@ -5,6 +5,7 @@ import { FormArray } from '@angular/forms';
 import {ProfileForm} from '../models/profileForm';
 import * as Reflect from 'core-js/fn/reflect';
 import {FORM_METADATA} from '../decorators/formControl.decorator';
+import {DeclarativeFormService} from '../models/DeclarativeForm';
 
 @Component({
   selector: 'app-profile-editor',
@@ -38,7 +39,7 @@ export class ProfileEditorComponent implements OnInit{
   }
 
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private formService: DeclarativeFormService) { }
 
   ngOnInit(){
 
@@ -46,7 +47,7 @@ export class ProfileEditorComponent implements OnInit{
     this.fields = Object.values(Object.getPrototypeOf(this.form));
     console.log(this.form);
     // this.fields =  this.form.
-    const formfields =  Reflect.getMetadata(FORM_METADATA, ProfileForm);
+    const formfields =  this.formService.getformFields(this.form);
 
     this.fields = formfields.fields;
 
@@ -55,9 +56,9 @@ export class ProfileEditorComponent implements OnInit{
     this.form.lastName = 'noy';
     this.form.email = 'nirn@sela.co.il';
 
-    setTimeout(() => {
-      this.profileForm.setValue(this.form);
-    }, 10);
+    // setTimeout(() => {
+    //   this.profileForm.setValue(this.form);
+    // }, 10);
 
     // console.log(formGroup);
     // console.log(this.profileForm.controls);

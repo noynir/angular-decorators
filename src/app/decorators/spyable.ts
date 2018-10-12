@@ -8,7 +8,8 @@ export function spyable(target: any){
 
   const methods = ownKeys(proto).filter((key) => {
     return typeof proto[key] === 'function' && key !== 'constructor';
-  })
+  });
+
 
 
   console.log(methods);
@@ -17,3 +18,6 @@ export function spyable(target: any){
   return target;
 
 }
+
+
+

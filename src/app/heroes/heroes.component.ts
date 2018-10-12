@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 import {tap$} from '../decorators/tap';
+import {TestHost} from '../decorators/testHost.decorator';
 
+@TestHost()
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',

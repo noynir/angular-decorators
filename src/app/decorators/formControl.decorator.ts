@@ -7,10 +7,27 @@ const FIELD_METADATA = Symbol('fieldMeta');
 export const FORM_METADATA = Symbol('formMeta');
 
 
-export function formControl(options: any) {
+export enum FormControlType {
+  Text = 'text',
+  Number = 'number',
+  Selection = 'select',
+  Check = 'checkbox'
+}
+export interface FormControlOptions {
+  label?: string;
+  type?: FormControlType;
+  selectionOptions?: { value: any, text: string }[];
+}
+
+export function formControl(options: FormControlOptions) {
 
   return (target, key) => {
-    const fieldMeta = {label: options.label || key, name: key, validators: options.validators || [] };
+    const fieldMeta = {
+      label: options.label || key,
+      name: key, validators: [],
+      type: options.type || FormControlType.Text,
+      options: options.selectionOptions || []
+    };
     Reflect.defineMetadata(FIELD_METADATA, fieldMeta, target, key);
 
     Object.defineProperty(target, key,
@@ -38,8 +55,6 @@ export function formGroup(options?: any){
     }, {fields:[], configuration:{} });
 
     Reflect.defineMetadata(FORM_METADATA, formfields, target);
-
-
 
   };
 }

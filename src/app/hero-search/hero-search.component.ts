@@ -21,10 +21,10 @@ import {tap$} from '../decorators/tap';
 export class HeroSearchComponent implements OnInit {
 
 
-  @tap$
+  @tap$({color:'red', logType:'table'})
   heroes$: Observable<Hero[]>;
 
-  @tap$
+  @tap$({color:'blue'})
   private searchTerms = new Subject<string>();
 
   constructor(private heroService: HeroService) {}

@@ -49,12 +49,22 @@
 <!--</form>-->
 
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" >
+  <ng-container *ngFor="let field of fields;" >
 
-  <ng-container *ngFor="let field of fields;">
-      <label>
+    <ng-container [ngSwitch]="field.type" >
+
+      <label *ngSwitchCase="'select'" >
         {{field.label}}:
-        <input type="text" [formControlName]="field.name"   />
+        <select [formControlName]="field.name"   >
+          <option *ngFor="let option of field.options" [value]="option.value" >{{option.text || option.value}}</option>
+        </select>
       </label>
+      <label *ngSwitchDefault >
+        {{field.label}}:
+        <input [type]="field.type" [formControlName]="field.name"   />
+      </label>
+
+    </ng-container>
 
   </ng-container>
 

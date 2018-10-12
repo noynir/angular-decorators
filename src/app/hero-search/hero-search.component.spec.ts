@@ -5,12 +5,16 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HeroSearchComponent } from './hero-search.component';
 import {HeroService} from '../hero.service';
 import {of} from 'rxjs';
+import SpyObj = jasmine.SpyObj;
 
-const makeSpy = function(target){
-    const methods = (<any>Reflect).getMetadata('spyableMethods', target);
-
-  return jasmine.createSpyObj('heroService', methods);
+const makeSpy = function(target) {
+  const methods = (<any>Reflect).getMetadata('spyableMethods', target);
+   jasmine.createSpyObj('heroService', methods);
 }
+
+
+export class HeroServiceSpy extends HeroService{}
+
 
 describe('HeroSearchComponent', () => {
   let component: HeroSearchComponent;

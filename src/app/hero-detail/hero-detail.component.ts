@@ -5,7 +5,9 @@ import { Location } from '@angular/common';
 import { Hero }         from '../hero';
 import { HeroService }  from '../hero.service';
 import {LifecycleLog} from '../decorators/lifecyleLog.decorator';
+import {TestHost} from '../decorators/testHost.decorator';
 
+@TestHost()
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
